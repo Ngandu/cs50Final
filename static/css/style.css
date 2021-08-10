@@ -1,0 +1,64 @@
+body {
+  background-color: #ddd;
+}
+
+.mainContainer {
+  padding-top: 30px;
+}
+
+.dashBox {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: #eee;
+}
+
+#addBtn {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 60px;
+  box-shadow: -1px 23px 31px -16px rgba(0, 0, 0, 0.48);
+  -webkit-box-shadow: -1px 23px 31px -16px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: -1px 23px 31px -16px rgba(0, 0, 0, 0.48);
+  position: absolute;
+  right: 20px;
+  bottom: 100px;
+  float: right;
+  cursor: pointer;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.todoCount {
+  background-color: #fff;
+  color: rgb(3, 89, 187);
+  font-weight: 100;
+  font-size: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.nav-item {
+  padding-left: 80px;
+  padding-right: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav-item a {
+  color: #fff;
+  font-weight: 800;
+}
+
+.nav-item:hover a {
+  color: #fff;
+}
+
+.list-group-item:hover {
+  cursor: pointer;
+}

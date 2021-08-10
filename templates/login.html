@@ -1,0 +1,22 @@
+{% extends 'auth.html' %}
+
+{% block head %}
+<title>Login | WeDo</title>
+{% endblock %}
+
+{% block body %}
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h2 class="text-center mb-4">Login</h2>
+    <form action="/login" method="post">
+      <input type="text" name="username" class="form-control mb-4" autocomplete="off" placeholder="Username">
+      <input type="password" name="password" class="form-control mb-4" autocomplete="off" placeholder="Password">
+      <button class="btn btn-primary" type="submit">Signin</button> or <a href="/register" class="btn btn-outline-primary">Signup</a>
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+  </div>
+</div>
+{% endblock %}

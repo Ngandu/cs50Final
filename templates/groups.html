@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Groups</title>
+{% endblock %}
+
+{% block body %}
+<div class="container mainContainer shadow-md">
+
+    <div class="row bg-light pt-4 pb-4">
+        <div class="col-md-4">
+            <h4 class="fw-light">Groups </h4>
+            
+            <div class="list-group list-group-numbered">
+                {% for group in groups %}
+                <a href="/group/{{group[0]}}" class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">{{ group[2] }}</div>
+                    {{ group[3] }}
+                  </div>
+                  <i class="fa fa-chevron-right pt-30"></i>
+                </a>
+            <!-- <div id="myChart"  width="400" height="400"></div> -->
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+          <h4 class="fw-light"> <button class="btn btn-primary pull-left" data-bs-toggle="modal" data-bs-target="#newGroupModal"><i class="fa fa-plus"></i> New group</button></h4>
+          {% for detail in group %}
+            {% if detail |length > 0 %}
+                <h3>Name: {{detail[2]}}</h3>
+                <p>{{detail[3]}}</p>
+                <h5>Owener: Patrick Ngand <a href="/#" class="btn btn-danger">Delete</a></h5>
+            {% endif %}
+          {% endfor %}
+
+          {% if tasks is defined %}
+          <h4 class="fw-light">Todos</h4>
+            <div class="list-group list-group-numbered">
+              {% for task in tasks %}
+                  <a href="/view/{{task[0]}}" class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">{{ task[1] }}</div>
+                      {{ task[7] }} | {{ task[2] }}
+                    </div>
+                    <i class="fa fa-chevron-right pt-30"></i>
+                  </a>
+              <!-- <div id="myChart"  width="400" height="400"></div> -->
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newGroupModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title text-white">New Group</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/groups" method="post">
+              <input type="text" name="group_name" class="form-control" placeholder="Group Name">
+              <input type="text" name="group_descrip" class="form-control" placeholder="Group Description">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Group</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block groupList %}
+
+    <button class="bg-primary text-white" id="addBtn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i></button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+            <h5 class="modal-title text-white">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form action="/func" method="post">
+                <input type="text" name="todo_title" class="form-control" placeholder="Todo Title">
+                <input type="text" name="todo_description" class="form-control" placeholder="Todo Description">
+                <input type="date" name="duedate" class="form-control">
+                <select name="group" class="form-control">
+                    <option value="0">Personal</option>
+                    {% if groupList is defined %}
+                        {% for group in groupList %}
+                        <option value="{{group.group_id}}">{{group.group_name}}</option>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </select>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

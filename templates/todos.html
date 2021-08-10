@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todos | WeDo</title>
+{% endblock %}
+
+{% block body %}
+<div class="container mainContainer shadow-lg">
+
+    <div class="row bg-light pt-4 pb-4">
+        <div class="col-md-4">
+            <h4 class="fw-light">Todos</h4>
+            <div class="list-group list-group-numbered">
+              {% for task in tasks %}
+                  <a href="/view/{{task[0]}}" class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">{{ task[1] }}</div>
+                      {{ task[7] }}
+                    </div>
+                    <i class="fa fa-chevron-right pt-30"></i>
+                  </a>
+              <!-- <div id="myChart"  width="400" height="400"></div> -->
+              {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+          <h4 class="fw-light">Details</h4>
+          {% for detail in task %}
+            {% if detail |length > 0 %}
+                <h3>Title: {{detail[1]}}</h3>
+                <p>{{detail[2]}}</p>
+                <p><b>Status</b>: {{detail[6]}}</p>
+                 <form action="/funcu" method="post">
+                     <select name="status" class="form-control">
+                         <option value="New">New</option>
+                         <option value="Process">Process</option>
+                         <option value="Complete">Complete</option>
+                     </select>
+                     <input type="hidden" name="todo_id" value="{{detail[0]}}">
+                     <button type="submit" class="btn btn-success">Update</button>
+                     <a href="/funcd/{{detail[0]}}" class="btn btn-danger">Delete</a>
+                 </form>
+            {% endif %}
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
